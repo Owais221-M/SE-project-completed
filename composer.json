@@ -1,0 +1,9 @@
+{
+    "name": "owaisansari/crypto_transaction",
+    "license": "MIT",
+    "require": {
+        "phpmailer/phpmailer": "^6.10",
+        "web3p/ethereum-tx": "^0.4.3",
+        "web3p/web3.php": "^0.3.2"
+    }
+}

@@ -1,0 +1,476 @@
+/* =============================================================
+   GLOBAL DESIGN SYSTEM — Crypto Trading Platform
+   Shared base styles imported by every page
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* ─── Design Tokens ─── */
+:root {
+  /* Core palette */
+  --bg-primary:      #0a0e17;
+  --bg-secondary:    #111827;
+  --bg-card:         #1a2035;
+  --bg-card-hover:   #1f2a45;
+  --bg-elevated:     #243055;
+
+  /* Accent */
+  --accent:          #f0b90b;
+  --accent-hover:    #fcd535;
+  --accent-glow:     rgba(240, 185, 11, 0.15);
+  --accent-glow-strong: rgba(240, 185, 11, 0.3);
+
+  /* Semantic colors */
+  --green:           #00c087;
+  --green-bg:        rgba(0, 192, 135, 0.12);
+  --red:             #f6465d;
+  --red-bg:          rgba(246, 70, 93, 0.12);
+  --blue:            #1e90ff;
+  --purple:          #a855f7;
+
+  /* Text */
+  --text-primary:    #eaecef;
+  --text-secondary:  #848e9c;
+  --text-muted:      #5e6673;
+
+  /* Borders */
+  --border:          rgba(255, 255, 255, 0.06);
+  --border-strong:   rgba(255, 255, 255, 0.12);
+
+  /* Shadows */
+  --shadow-sm:       0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md:       0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg:       0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-glow:     0 0 20px var(--accent-glow);
+
+  /* Radii */
+  --radius-sm:       6px;
+  --radius-md:       10px;
+  --radius-lg:       16px;
+  --radius-xl:       20px;
+
+  /* Typography */
+  --font:            'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Spacing scale */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* Transitions */
+  --ease:  cubic-bezier(0.4, 0, 0.2, 1);
+  --duration: 0.25s;
+  --transition: all var(--duration) var(--ease);
+
+  /* Semantic aliases */
+  --primary:    var(--accent);
+  --success:    var(--green);
+  --danger:     var(--red);
+  --bg-hover:   var(--bg-card-hover);
+}
+
+/* ─── Light Mode Overrides ─── */
+body.light-mode {
+  --bg-primary:      #f8f9fb;
+  --bg-secondary:    #ffffff;
+  --bg-card:         #ffffff;
+  --bg-card-hover:   #f3f4f6;
+  --bg-elevated:     #e9ecf1;
+  --text-primary:    #1a1d26;
+  --text-secondary:  #5f6570;
+  --text-muted:      #9ca3af;
+  --border:          rgba(0, 0, 0, 0.06);
+  --border-strong:   rgba(0, 0, 0, 0.12);
+  --shadow-sm:       0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md:       0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg:       0 8px 32px rgba(0, 0, 0, 0.1);
+  --accent-glow:     rgba(240, 185, 11, 0.08);
+}
+
+/* ─── CSS Reset ─── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ─── Base ─── */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background-color var(--duration) var(--ease),
+              color var(--duration) var(--ease);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--duration) var(--ease);
+}
+a:hover { color: var(--accent-hover); }
+
+img { max-width: 100%; height: auto; }
+
+/* ─── Typography ─── */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+h1 { font-size: 1.75rem; }
+h2 { font-size: 1.4rem; }
+h3 { font-size: 1.15rem; }
+
+/* ─── Utility: Cards ─── */
+.g-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--duration) var(--ease),
+              box-shadow var(--duration) var(--ease),
+              background-color var(--duration) var(--ease);
+}
+.g-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.g-card-glass {
+  background: rgba(26, 32, 53, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+}
+body.light-mode .g-card-glass {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* ─── Buttons ─── */
+.g-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 10px 20px;
+  font-family: var(--font);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--duration) var(--ease);
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.g-btn-primary {
+  background: linear-gradient(135deg, var(--accent) 0%, #d4a00a 100%);
+  color: #0a0e17;
+  box-shadow: 0 2px 8px rgba(240, 185, 11, 0.25);
+}
+.g-btn-primary:hover {
+  background: linear-gradient(135deg, var(--accent-hover) 0%, var(--accent) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(240, 185, 11, 0.35);
+  color: #0a0e17;
+}
+
+.g-btn-outline {
+  background: transparent;
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+}
+.g-btn-outline:hover {
+  background: var(--accent-glow);
+  color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.g-btn-danger {
+  background: var(--red);
+  color: #fff;
+}
+.g-btn-danger:hover {
+  background: #d93651;
+  transform: translateY(-1px);
+}
+
+.g-btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 8px 14px;
+}
+.g-btn-ghost:hover {
+  color: var(--text-primary);
+  background: var(--bg-card-hover);
+}
+
+/* ─── Form Inputs ─── */
+.g-input, .g-select {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: var(--font);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: border-color var(--duration) var(--ease),
+              box-shadow var(--duration) var(--ease);
+}
+.g-input:focus, .g-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+.g-input::placeholder {
+  color: var(--text-muted);
+}
+
+.g-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: var(--space-xs);
+}
+
+/* ─── Tables ─── */
+.g-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.g-table thead th {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.g-table tbody td {
+  padding: 12px 16px;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.g-table tbody tr {
+  transition: background-color var(--duration) var(--ease);
+}
+.g-table tbody tr:hover {
+  background: var(--bg-card-hover);
+}
+.g-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ─── Badges / Tags ─── */
+.g-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 20px;
+}
+.g-badge-green  { background: var(--green-bg); color: var(--green); }
+.g-badge-red    { background: var(--red-bg);   color: var(--red);   }
+.g-badge-yellow { background: var(--accent-glow); color: var(--accent); }
+
+/* ─── Section Titles ─── */
+.g-section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+.g-section-title .icon {
+  font-size: 1.2rem;
+}
+
+/* ─── Grid Helpers ─── */
+.g-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+}
+.g-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+.g-grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-md);
+}
+
+@media (max-width: 768px) {
+  .g-grid-2, .g-grid-3 { grid-template-columns: 1fr; }
+}
+
+/* ─── Layout: Page Shell ─── */
+.g-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.g-page > main {
+  flex: 1;
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-lg);
+}
+
+/* ─── Navbar ─── */
+.g-navbar {
+  background: rgba(10, 14, 23, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 var(--space-xl);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+body.light-mode .g-navbar {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.g-navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1320px;
+  margin: 0 auto;
+  height: 64px;
+}
+
+.g-navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+.g-navbar-brand:hover { color: var(--accent); }
+
+.g-navbar-brand .brand-icon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--accent), #d4a00a);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #0a0e17;
+}
+
+.g-nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.g-nav-link {
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  transition: all var(--duration) var(--ease);
+  text-decoration: none;
+}
+.g-nav-link:hover {
+  color: var(--text-primary);
+  background: var(--bg-card-hover);
+}
+.g-nav-link.active {
+  color: var(--accent);
+  background: var(--accent-glow);
+}
+
+/* ─── Footer ─── */
+.g-footer {
+  border-top: 1px solid var(--border);
+  padding: var(--space-lg) var(--space-xl);
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ─── Animations ─── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.6; }
+}
+
+.g-animate-in {
+  animation: fadeInUp 0.5s var(--ease) both;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
+
+/* ─── Responsive Nav Toggle ─── */
+@media (max-width: 768px) {
+  .g-navbar-inner {
+    flex-wrap: wrap;
+    height: auto;
+    padding: var(--space-md) 0;
+    gap: var(--space-sm);
+  }
+  .g-nav-links {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
